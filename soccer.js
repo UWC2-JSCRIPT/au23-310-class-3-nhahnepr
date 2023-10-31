@@ -1,4 +1,4 @@
-
+// Soccer Scores
 const RESULT_VALUES = {
   w: 3,
   d: 1,
