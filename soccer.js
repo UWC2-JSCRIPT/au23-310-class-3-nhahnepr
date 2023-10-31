@@ -19,7 +19,17 @@ const getPointsFromResult = function getPointsFromResult(result) {
 // Create getTotalPoints function which accepts a string of results
 // including wins, draws, and losses i.e. 'wwdlw'
 // Returns total number of points won
-
+function getTotalPoints(record) {
+  let replaceRecord = record.replace(/[wdl]/g, m => RESULT_VALUES[m]);
+  let recordSplit = replaceRecord.split('');
+  console.log(recordSplit);
+  let recordNum = recordSplit.reduce((acc, x) => acc.concat(+x), []);
+  let sum = 0;
+  for (let i = 0; i < recordNum.length; i++) {
+      sum += recordNum[i]
+  }
+  return (sum);
+};
 
 
 // Check getTotalPoints
@@ -29,7 +39,16 @@ console.log(getTotalPoints('wwdl')); // should equal 7
 // each argument is a team object in the format { name, results }
 // i.e. {name: 'Sounders', results: 'wwlwdd'}
 // Logs each entry to the console as "Team name: points"
-
+const teams = [
+  {name : 'Sounders', results : 'wwdl'},
+  {name : 'Galaxy', results : 'wlld'}
+];
+console.log(teams);
+function orderTeams(teamName) {
+  console.log(`${teamName.name}: ${getTotalPoints(teamName.results)}`);
+  return teamName;
+};
+teams.forEach(orderTeams);
 
 
 // Check orderTeams
